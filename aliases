@@ -1,0 +1,33 @@
+#!/bin/bash
+alias ssh='ssh -AXY'
+#alias ll='ls -laF --color-always' 
+alias ll='ls -laF' 
+alias emcas='emacs'
+alias lrt='ls -lart'
+alias pg='ping www.google.com'
+alias ltr='ls -ltr'
+alias cdd='cd $WORKDEV'
+alias chdev='export WORKDEV=$PWD'
+alias servers='sudo /usr/local/sbin/launch_servers.sh'
+alias pycc_deploy='bin/pycc -bc -fc --mx --rel res/deploy/r2deploy.yml'
+alias pycc='bin/pycc'
+alias pymx='bin/pycc --mx'
+alias nose='bin/nosetests'
+alias timestamp='date "+%Y-%m-%dT%H:%M:%S-05"'
+alias cleanpyc='for d in $(find ./ -name \*pyc); do rm -rf $d; done'
+alias wipeall='rabbit wipe; couch wipe; elastic wipe'
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function
+alias fact="elinks -dump randomfunfacts.com | sed -n '/^| /p' | tr -d \|"
+alias gpr='git pull --rebase'
+alias bing='bin/generate_interfaces'
+alias gsu='git submodule update'
+alias greset="git reset --hard HEAD"
+alias ipy="ipython --no-confirm-exit"
+alias gist='open http://gist.github.com'
+alias gdiff='git diff'
+alias supd='open http://localhost:9001'
+
+function git-rid {
+    git branch -D $1
+    git push origin :$1
+}
