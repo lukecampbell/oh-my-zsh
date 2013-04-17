@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zshrc
 alias ssh='ssh -AXY'
 #alias ll='ls -laF --color-always' 
 alias ll='ls -laF' 
@@ -26,8 +26,55 @@ alias ipy="ipython --no-confirm-exit"
 alias gist='open http://gist.github.com'
 alias gdiff='git diff'
 alias supd='open http://localhost:9001'
+alias glc="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --"
+alias pycc_demo='bin/pycc --rel res/deploy/r2demo.yml --mx -fc -bc'
+alias gfa='git fetch --all'
+alias tadmin='open http://localhost:9000/manager/html'
+alias erddap='open "http://localhost:9000/erddap/info/index.html?page=1&itemsPerPage=1000"'
 
 function git-rid {
     git branch -D $1
     git push origin :$1
 }
+function upd {
+    if [[ $1 == 'all' ]]; then
+        git submodule foreach git fetch --all
+    else
+        cd $1
+        git fetch --all
+        popd
+    fi
+    
+}
+
+function coi-tags {
+    ctags `find ion/ -name \*.py`
+    ctags -a `find extern/coverage-model/ -name \*.py`
+    ctags -a `find extern/pyon -name \*.py`
+}
+
+function workonz {
+    workon $1
+    source ~/.oh-my-zsh/oh-my-zsh.sh
+}
+
+function meow {
+    $*
+    stat=$?
+    growl $1 'Status: ' $stat
+}
+function test-suite {
+    meow bin/nosetests -a UNIT -v ion/services/dm
+    meow bin/nosetests -a INT -v ion/services/dm/utility/test/
+    meow bin/nosetests -a SMOKE -v
+    meow bin/nosetests -a INT -v ion/services/dm/test/
+    meow bin/nosetests -a INT -v ion/processes/data/transforms/test/test_transform_prime.py
+    meow bin/nosetests -a INT -v ion/services/sa/process/test/test_int_data_process_management_service.py:TestDataProcessManagementPrime
+    meow bin/nosetests -a INT -v ion/processes/data/registration/test/test_registration_process.py:RegistrationProcessTest
+}
+
+function start_supervisor {
+    meow supervisord -c ~/.supervisor/supervisord.conf
+}
+
+alias mw='meow'
