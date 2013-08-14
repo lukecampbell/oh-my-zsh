@@ -18,10 +18,6 @@ EDITOR=/usr/bin/vim
 
 ###Python
 # Virtual Env for Python
-WORKON_HOME=~/Documents/Dev/virtenvs
-source /usr/local/bin/virtualenvwrapper.sh
-
-SITE_PACK=$VIRTUAL_ENV/lib/python2.7/site-packages
 
 #### Java
 JAVA_HOME=`/usr/libexec/java_home`
@@ -62,7 +58,6 @@ HISTFILESIZE=1000000000 HISTSIZE=1000000
 CLICOLOR=1
 LSCOLORS=ExFxCxDxBxegedabagacad
 . $HOME/.aliases
-workon work
 
 
 # Example aliases
@@ -90,6 +85,4 @@ workon work
 plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
-
-# Customize to your needs...
 
