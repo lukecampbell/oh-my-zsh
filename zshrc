@@ -18,10 +18,6 @@ EDITOR=/usr/bin/vim
 
 ###Python
 # Virtual Env for Python
-WORKON_HOME=~/Documents/Dev/virtenvs
-source /usr/local/bin/virtualenvwrapper.sh
-
-SITE_PACK=$VIRTUAL_ENV/lib/python2.7/site-packages
 
 #### Java
 JAVA_HOME=`/usr/libexec/java_home`
@@ -41,6 +37,7 @@ RUBYOPT="rubygems"
 PYTHONPATH=.
 WORKDEV="$HOME/Documents/Dev/code/"
 PATH=$HOME/bin:$PATH
+PATH=$PATH:/usr/local/share/python
 
 #############
 # Increase the history size
@@ -62,7 +59,6 @@ HISTFILESIZE=1000000000 HISTSIZE=1000000
 CLICOLOR=1
 LSCOLORS=ExFxCxDxBxegedabagacad
 . $HOME/.aliases
-workon work
 
 
 # Example aliases
@@ -83,6 +79,12 @@ workon work
 
 # Uncomment following line if you want red dots to be displayed while waiting for completion
 # COMPLETION_WAITING_DOTS="true"
+DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Add CABALDIR
+CABALDIR=$HOME/.cabal
+
+PATH=$PATH:$CABALDIR/bin
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
@@ -90,6 +92,4 @@ workon work
 plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
-
-# Customize to your needs...
 

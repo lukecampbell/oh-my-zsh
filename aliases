@@ -12,14 +12,13 @@ alias servers='sudo /usr/local/sbin/launch_servers.sh'
 alias pycc_deploy='bin/pycc -bc -fc --mx --rel res/deploy/r2deploy.yml'
 alias pycc='bin/pycc'
 alias pymx='bin/pycc --mx'
-alias nose='bin/nosetests'
+alias nose='mw bin/nosetests'
 alias timestamp='date "+%Y-%m-%dT%H:%M:%S-05"'
 alias cleanpyc='for d in $(find ./ -name \*pyc); do rm -rf $d; done'
 alias wipeall='rabbit wipe; couch wipe; elastic wipe'
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function
 alias fact="elinks -dump randomfunfacts.com | sed -n '/^| /p' | tr -d \|"
 alias gpr='git pull --rebase'
-alias bing='bin/generate_interfaces'
 alias gsu='git submodule update'
 alias greset="git reset --hard HEAD"
 alias ipy="ipython --no-confirm-exit"
@@ -46,11 +45,15 @@ function upd {
     fi
     
 }
+function bing {
+    meow bin/generate_interfaces
+}
 
 function coi-tags {
     ctags `find ion/ -name \*.py`
     ctags -a `find extern/coverage-model/ -name \*.py`
     ctags -a `find extern/pyon -name \*.py`
+    ctags -a `find extern/ion-functions -name \*.py`
 }
 
 function workonz {
@@ -66,15 +69,82 @@ function meow {
 function test-suite {
     meow bin/nosetests -a UNIT -v ion/services/dm
     meow bin/nosetests -a INT -v ion/services/dm/utility/test/
-    meow bin/nosetests -a SMOKE -v
+    meow bin/nosetests -a INT -v ion.agents.instrument.test.test_gateway_to_instrument_agent:TestInstrumentAgentViaGateway.test_autosample
+    meow bin/nosetests -a INT -v ion.services.ans.test.test_visualization_service:TestVisualizationServiceIntegration.test_realtime_visualization
+    meow bin/nosetests -a INT -v ion.services.sa.test.test_activate_instrument:TestActivateInstrumentIntegration.test_activateInstrumentSample
     meow bin/nosetests -a INT -v ion/services/dm/test/
     meow bin/nosetests -a INT -v ion/processes/data/transforms/test/test_transform_prime.py
     meow bin/nosetests -a INT -v ion/services/sa/process/test/test_int_data_process_management_service.py:TestDataProcessManagementPrime
     meow bin/nosetests -a INT -v ion/processes/data/registration/test/test_registration_process.py:RegistrationProcessTest
 }
 
+function loadui {
+    meow bin/pycc -x ion.processes.bootstrap.ion_loader.IONLoader op=loadui -s $1 loadui=True attachments=res/preload/r2_ioc/attachments ui_path="http://userexperience.oceanobservatories.org/database-exports/Candidates"
+}
+
+function loades {
+    meow bin/pycc -s $1 -x ion.processes.bootstrap.index_bootstrap.IndexBootStrap op='clean_bootstrap'
+}
+
+function loadalpha {
+    meow bin/pycc -x ion.processes.bootstrap.ion_loader.IONLoader cfg=res/preload/r2_ioc/config/ooi_alpha.yml -s $1
+}
+
+function loadbeta {
+    meow bin/pycc -x ion.processes.bootstrap.ion_loader.IONLoader op=load -s $1 scenario=BETA path=master
+}
+
 function start_supervisor {
     meow supervisord -c ~/.supervisor/supervisord.conf
 }
 
+function yesterday { 
+    if (($# == 0)); then
+        arg=1
+    else
+        arg=$1
+    fi
+    echo "from datetime import date, timedelta; print str(date.today() - timedelta($arg))" | python 
+}
+
+function work-log {
+    if (($# == 0)); then
+        arg=1
+    else
+        arg=$1
+    fi
+    git log --author='Luke Campbell' --oneline --since=$(yesterday $arg) --stat
+}
+
+
+
 alias mw='meow'
+# Customize to your needs...
+function venv {
+    WORKON_HOME=~/Documents/Dev/virtenvs
+    source /usr/local/bin/virtualenvwrapper.sh
+
+    SITE_PACK=$VIRTUAL_ENV/lib/python2.7/site-packages
+
+    source $ZSH/oh-my-zsh.sh
+    workon work
+}
+
+function monitor {
+    open "http://localhost:5200/p/$1"
+}
+
+function email {
+    if [[ ! -d /tmp/email ]]
+    then
+        git clone git@gist.github.com:b10c609d89ea8b89d409.git /tmp/email
+    fi
+    mvim /tmp/email/email.md
+    open 'http://localhost:8888/'
+}
+
+function notebook {
+    open 'http://localhost:8888/'
+}
+
+venv
