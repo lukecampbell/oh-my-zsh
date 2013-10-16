@@ -94,5 +94,6 @@ plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
 bindkey -v 
+bindkey '^r' history-incremental-search-backward
 export KEYTIMEOUT=1
 
