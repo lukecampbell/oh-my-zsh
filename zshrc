@@ -19,6 +19,7 @@ EDITOR=/usr/bin/vim
 ###Python
 # Virtual Env for Python
 WORKON_HOME=~/Documents/Dev/virtenvs
+VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
 source /usr/local/bin/virtualenvwrapper.sh
 
 SITE_PACK=$VIRTUAL_ENV/lib/python2.7/site-packages
@@ -93,3 +94,5 @@ source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
