@@ -2,24 +2,24 @@
 alias ssh='ssh -AXY'
 #alias ll='ls -laF --color-always' 
 alias ll='ls -laF' 
-alias emcas='emacs'
+#alias emcas='emacs'
 alias lrt='ls -lart'
 alias pg='ping www.google.com'
 alias ltr='ls -ltr'
 alias cdd='cd $WORKDEV'
 alias chdev='export WORKDEV=$PWD'
-alias servers='sudo /usr/local/sbin/launch_servers.sh'
-alias pycc_deploy='bin/pycc -bc -fc --mx --rel res/deploy/r2deploy.yml'
-alias pycc='bin/pycc'
-alias pymx='bin/pycc --mx'
-alias nose='bin/nosetests'
+#alias servers='sudo /usr/local/sbin/launch_servers.sh'
+#alias pycc_deploy='bin/pycc -bc -fc --mx --rel res/deploy/r2deploy.yml'
+#alias pycc='bin/pycc'
+#alias pymx='bin/pycc --mx'
+#alias nose='bin/nosetests'
 alias timestamp='date "+%Y-%m-%dT%H:%M:%S-05"'
 alias cleanpyc='for d in $(find ./ -name \*pyc); do rm -rf $d; done'
-alias wipeall='rabbit wipe; couch wipe; elastic wipe'
+#alias wipeall='rabbit wipe; couch wipe; elastic wipe'
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function
 alias fact="elinks -dump randomfunfacts.com | sed -n '/^| /p' | tr -d \|"
 alias gpr='git pull --rebase'
-alias bing='bin/generate_interfaces'
+#alias bing='bin/generate_interfaces'
 alias gsu='git submodule update'
 alias greset="git reset --hard HEAD"
 alias ipy="ipython --no-confirm-exit"
@@ -27,10 +27,10 @@ alias gist='open http://gist.github.com'
 alias gdiff='git diff'
 alias supd='open http://localhost:9001'
 alias glc="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --"
-alias pycc_demo='bin/pycc --rel res/deploy/r2demo.yml --mx -fc -bc'
+#alias pycc_demo='bin/pycc --rel res/deploy/r2demo.yml --mx -fc -bc'
 alias gfa='git fetch --all'
-alias tadmin='open http://localhost:9000/manager/html'
-alias erddap='open "http://localhost:9000/erddap/info/index.html?page=1&itemsPerPage=1000"'
+#alias tadmin='open http://localhost:9000/manager/html'
+#alias erddap='open "http://localhost:9000/erddap/info/index.html?page=1&itemsPerPage=1000"'
 
 function git-rid {
     git branch -D $1
@@ -63,15 +63,15 @@ function meow {
     stat=$?
     growl $1 'Status: ' $stat
 }
-function test-suite {
-    meow bin/nosetests -a UNIT -v ion/services/dm
-    meow bin/nosetests -a INT -v ion/services/dm/utility/test/
-    meow bin/nosetests -a SMOKE -v
-    meow bin/nosetests -a INT -v ion/services/dm/test/
-    meow bin/nosetests -a INT -v ion/processes/data/transforms/test/test_transform_prime.py
-    meow bin/nosetests -a INT -v ion/services/sa/process/test/test_int_data_process_management_service.py:TestDataProcessManagementPrime
-    meow bin/nosetests -a INT -v ion/processes/data/registration/test/test_registration_process.py:RegistrationProcessTest
-}
+#function test-suite {
+#    meow bin/nosetests -a UNIT -v ion/services/dm
+#    meow bin/nosetests -a INT -v ion/services/dm/utility/test/
+#    meow bin/nosetests -a SMOKE -v
+#    meow bin/nosetests -a INT -v ion/services/dm/test/
+#    meow bin/nosetests -a INT -v ion/processes/data/transforms/test/test_transform_prime.py
+#    meow bin/nosetests -a INT -v ion/services/sa/process/test/test_int_data_process_management_service.py:TestDataProcessManagementPrime
+#    meow bin/nosetests -a INT -v ion/processes/data/registration/test/test_registration_process.py:RegistrationProcessTest
+#}
 
 function start_supervisor {
     meow supervisord -c ~/.supervisor/supervisord.conf

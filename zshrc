@@ -18,19 +18,19 @@ EDITOR=/usr/bin/vim
 
 ###Python
 # Virtual Env for Python
-WORKON_HOME=~/Documents/Dev/virtenvs
-VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
-source /usr/local/bin/virtualenvwrapper.sh
+#WORKON_HOME=~/Documents/Dev/virtenvs
+#VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
+#source /usr/local/bin/virtualenvwrapper.sh
 
-SITE_PACK=$VIRTUAL_ENV/lib/python2.7/site-packages
+#SITE_PACK=$VIRTUAL_ENV/lib/python2.7/site-packages
 
 #### Java
-JAVA_HOME=`/usr/libexec/java_home`
-export JAVA_HOME=$JAVA_HOME
+#JAVA_HOME=`/usr/libexec/java_home`
+#export JAVA_HOME=$JAVA_HOME
 
 #maven
-PATH=/Users/dstuebe/Documents/Dev/apps/apache-maven-2.2.1/bin:$PATH
-PATH=/Applications/eclipse/:$PATH
+#PATH=/Users/dstuebe/Documents/Dev/apps/apache-maven-2.2.1/bin:$PATH
+#PATH=/Applications/eclipse/:$PATH
 
 # BREW
 PATH=/usr/local/share/python:/usr/local/bin:/usr/local/sbin:$PATH
@@ -63,7 +63,6 @@ HISTFILESIZE=1000000000 HISTSIZE=1000000
 CLICOLOR=1
 LSCOLORS=ExFxCxDxBxegedabagacad
 . $HOME/.aliases
-workon work
 
 
 # Example aliases
@@ -91,6 +90,8 @@ workon work
 plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
+source /Users/luke/.venvburrito/startup.sh
+workon work
 
 # Customize to your needs...
 
