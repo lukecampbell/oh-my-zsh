@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh configuration.
-DISABLE_AUTO_UPDATE="false"
+DISABLE_AUTO_UPDATE="true"
 USE_VIRTUALENV_BURRITO="false"
 DEFAULT_BURRITO="work"
 USE_RVM="false"
@@ -73,6 +73,11 @@ HISTFILESIZE=1000000000 HISTSIZE=1000000
 # Command line settings and alias
 CLICOLOR=1
 LSCOLORS=ExFxCxDxBxegedabagacad
+if [[ "$USE_RVM" == "true" ]]
+then
+    PATH=$HOME/.rvm/bin:$PATH # Add RVM to PATH for scripting
+    [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function
+fi
 . $HOME/.aliases
 
 
@@ -111,11 +116,6 @@ fi
 # Customize to your needs...
 
 
-if [[ "$USE_RVM" == "true" ]]
-then
-    PATH=$HOME/.rvm/bin:$PATH # Add RVM to PATH for scripting
-    [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function
-fi
 
 bindkey -v
 bindkey '^r' history-incremental-search-backward
