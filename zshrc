@@ -1,4 +1,11 @@
 # Path to your oh-my-zsh configuration.
+DISABLE_AUTO_UPDATE="false"
+USE_VIRTUALENV_BURRITO="false"
+DEFAULT_BURRITO="work"
+USE_RVM="false"
+
+
+
 ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load.
@@ -27,6 +34,7 @@ EDITOR=/usr/bin/vim
 #### Java
 #JAVA_HOME=`/usr/libexec/java_home`
 #export JAVA_HOME=$JAVA_HOME
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0_67.jdk/Contents/Home
 
 #maven
 #PATH=/Users/dstuebe/Documents/Dev/apps/apache-maven-2.2.1/bin:$PATH
@@ -42,6 +50,9 @@ RUBYOPT="rubygems"
 PYTHONPATH=.
 WORKDEV="$HOME/Documents/Dev/code/"
 PATH=$HOME/bin:$PATH
+
+# GO
+export GOPATH=$HOME/Documents/Dev/go
 
 #############
 # Increase the history size
@@ -90,13 +101,22 @@ LSCOLORS=ExFxCxDxBxegedabagacad
 plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
-source /Users/luke/.venvburrito/startup.sh
-workon work
+
+if [[ "$USE_VIRTUALENV_BURRITO" == "true" ]]
+then
+    source $HOME/.venvburrito/startup.sh
+    workon $DEFAULT_BURRITO
+fi
 
 # Customize to your needs...
 
 
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+if [[ "$USE_RVM" == "true" ]]
+then
+    PATH=$HOME/.rvm/bin:$PATH # Add RVM to PATH for scripting
+    [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function
+fi
+
 bindkey -v
 bindkey '^r' history-incremental-search-backward
 export KEYTIMEOUT=1

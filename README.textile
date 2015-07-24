@@ -22,28 +22,10 @@ h4. via `wget`
 h3. The manual way
 
 
-1. Clone the repository
+1. Install
 
-  @git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh@
+  @curl https://raw.githubusercontent.com/lukecampbell/oh-my-zsh/master/install.sh | bash -s stable
 
-2. *OPTIONAL* Backup your existing ~/.zshrc file
-
-  @cp ~/.zshrc ~/.zshrc.orig@
-
-3. Create a new zsh config by copying the zsh template we've provided.
-
-  @cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc@
-
-
-4. Set zsh as your default shell:
-
-  @chsh -s /bin/zsh@
-
-5. Start / restart zsh (open a new terminal is easy enough...)
-
-h3. Problems?
-
-You _might_ need to modify your PATH in ~/.zshrc if you're not able to find some commands after switching to _Oh My Zsh_.
 
 h2. Usage
 
