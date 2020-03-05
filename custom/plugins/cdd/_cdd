@@ -1,0 +1,13 @@
+#compdef cdd
+# Useful resources for reproducing custom autocompletion scripts
+# https://unix.stackexchange.com/questions/239528/dynamic-zsh-autocomplete-for-custom-commands
+# http://zsh.sourceforge.net/Doc/Release/Completion-System.html
+# https://mads-hartmann.com/2017/08/06/writing-zsh-completion-scripts.html
+# https://github.com/zsh-users/zsh-completions/blob/master/zsh-completions-howto.org
+
+function _cdd {
+    _arguments -C \
+        "1: :($(ls $WORKDEV))"
+}
+
+_cdd "$@"
