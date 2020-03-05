@@ -7,7 +7,6 @@ alias lrt='ls -lart'
 alias grep="grep --color=auto"
 alias pg='ping www.google.com'
 alias ltr='ls -ltr'
-alias cdd='cd $WORKDEV'
 alias chdev='export WORKDEV=$PWD'
 #alias servers='sudo /usr/local/sbin/launch_servers.sh'
 #alias pycc_deploy='bin/pycc -bc -fc --mx --rel res/deploy/r2deploy.yml'
@@ -45,7 +44,6 @@ function upd {
         git fetch --all
         popd
     fi
-    
 }
 
 function coi-tags {
@@ -88,4 +86,8 @@ function start-conda {
 }
 function pav {
     source $HOME/venv/bin/activate
+}
+
+function cdd {
+    cd $WORKDEV/$1
 }
