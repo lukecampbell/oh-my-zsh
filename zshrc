@@ -34,21 +34,21 @@ EDITOR=/usr/bin/vim
 #### Java
 #JAVA_HOME=`/usr/libexec/java_home`
 #export JAVA_HOME=$JAVA_HOME
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0_67.jdk/Contents/Home
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 
 #maven
 #PATH=/Users/dstuebe/Documents/Dev/apps/apache-maven-2.2.1/bin:$PATH
 #PATH=/Applications/eclipse/:$PATH
 
 # BREW
-PATH=/usr/local/share/python:/usr/local/bin:/usr/local/sbin:$PATH
+#PATH=/usr/local/share/python:/usr/local/bin:/usr/local/sbin:$PATH
 
 RUBYOPT="rubygems"
 
 # Git
 #source /usr/local/git/contrib/completion/git-completion.bash # Default install package
 PYTHONPATH=.
-WORKDEV="$HOME/Documents/Dev/code/"
+WORKDEV="$HOME/code/"
 PATH=$HOME/bin:$PATH
 
 # GO
@@ -119,4 +119,7 @@ fi
 
 bindkey -v
 bindkey '^r' history-incremental-search-backward
+bindkey -M vicmd v edit-command-line
 export KEYTIMEOUT=1
+
+unsetopt autocd

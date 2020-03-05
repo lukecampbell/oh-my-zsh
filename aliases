@@ -4,6 +4,7 @@ alias ssh='ssh -AXY'
 alias ll='ls -laF' 
 #alias emcas='emacs'
 alias lrt='ls -lart'
+alias grep="grep --color=auto"
 alias pg='ping www.google.com'
 alias ltr='ls -ltr'
 alias cdd='cd $WORKDEV'
@@ -68,10 +69,6 @@ function start_supervisor {
     meow supervisord -c ~/.supervisor/supervisord.conf
 }
 
-function notebook {
-    open 'http://localhost:8888/'
-}
-
 function git-clean-branches {
     for d in $(git branch --merged master | grep -v "\* master"); do git push luke :$d; git branch -D $d; done
 }
@@ -81,3 +78,14 @@ if [[ "$USE_RVM" == "true" ]]
 then
     rvm use ruby-2.0.0-p481
 fi
+
+enc () {
+    gpg -aer 'luke@axds.co' -o $1.asc $1 && rm $1
+}
+
+function start-conda {
+    eval "$(/home/luke/miniconda3/bin/conda shell.zsh hook)"
+}
+function pav {
+    source $HOME/venv/bin/activate
+}
