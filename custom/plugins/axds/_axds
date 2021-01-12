@@ -1,0 +1,11 @@
+#compdef axds
+
+
+function _axds {
+    local line
+    _arguments -C \
+        "*-f[composition]: :($(ls $HOME/code/axds-integration-suite/ | grep .yml))" \
+        ": :(up down logs)"
+}
+
+_axds "$@"
