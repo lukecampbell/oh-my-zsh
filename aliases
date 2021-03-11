@@ -91,3 +91,15 @@ function pav {
 function cdd {
     cd $WORKDEV/$1
 }
+
+function latest-download {
+    find $HOME/Downloads -maxdepth 1 -type f -printf "%T@ | %p\n" | sort -rn | head -n1 | cut -d\| -f2 | xargs
+}
+
+function latest {
+    find ./ -maxdepth 1 -type f -printf "%T@ | %p\n" | sort -rn | head -n1 | cut -d\| -f2 | xargs
+}
+
+function latest-screenshot {
+    find $HOME/Pictures/screenshots -maxdepth 1 -type f -printf "%T@ | %p\n" | sort -rn | head -n1 | cut -d\| -f2 | xargs
+}

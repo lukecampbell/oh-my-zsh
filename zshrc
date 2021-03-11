@@ -57,7 +57,10 @@ export GOPATH=$HOME/Documents/Dev/go
 #############
 # Increase the history size
 #############
-HISTFILESIZE=1000000000 HISTSIZE=1000000
+HISTFILESIZE=1000000000
+HISTSIZE=1000000000
+SAVEHIST=$HISTSIZE
+
 
 #############
 # Mess with the prompt coloring/style
@@ -103,7 +106,7 @@ fi
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git cdd)
+plugins=(git cdd conda axds)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -123,3 +126,6 @@ bindkey -M vicmd v edit-command-line
 export KEYTIMEOUT=1
 
 unsetopt autocd
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /home/luke/bin/mc mc
